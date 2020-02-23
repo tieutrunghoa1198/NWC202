@@ -44,10 +44,10 @@ export default class Record extends Component {
                     backgroundColor="#FF4081"
                 />
                 <div className="row justify-content-center mt-2">
-                    <Button onClick={this.startRecording} variant="primary" className="text-capitalize mx-1 col-6 col-sm-4 col-lg-3 col-xl-2">
+                    <Button onClick={this.startRecording} variant="primary" className="text-capitalize mx-1 col-xs-6 col-sm-4 col-lg-3 col-xl-2">
                         Start record
                     </Button>
-                    <Button onClick={this.stopRecording} variant="danger" className="text-capitalize mx-1 col-6 col-sm-4 col-lg-3 col-xl-2">
+                    <Button onClick={this.stopRecording} variant="danger" className="text-capitalize mx-1 col-xs-6 col-sm-4 col-lg-3 col-xl-2">
                         Stop record
                     </Button>
                 </div>
