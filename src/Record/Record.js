@@ -27,7 +27,9 @@ export default class Record extends Component {
     }
 
     onStop(recordedBlob) {
-        console.log('recordedBlob is: ',recordedBlob)
+        console.log('recordedBlob is: ',recordedBlob.blobURL)
+        // save URL to mp3 file then POST to FPT.AI api
+        // code goes here
     }
 
     render() {
