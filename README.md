@@ -6,7 +6,7 @@ In the project directory, you can run:
 
 ### `npm install`
 
-Install all the nodemodule that needed in this project
+Install all the node_modules that needed in this project
 
 ### `yarn start`
 
