@@ -30,28 +30,31 @@ export default class Record extends Component {
         console.log('recordedBlob is: ',recordedBlob.blobURL)
         // save URL to mp3 file then POST to FPT.AI api
         // code goes here
+
     }
 
     render() {
         return (
-            <div>
+            <>
                 <ReactMic
                     record={this.state.record}
-                    className="sound-wave col"
+                    className="sound-wave w-100"
                     // onData={this.onData}  
                     onStop={this.onStop}
                     strokeColor="#000000"
                     backgroundColor="#FF4081"
                 />
                 <div className="row justify-content-center mt-2">
-                    <Button onClick={this.startRecording} variant="primary" className="text-capitalize mx-1 col-xs-6 col-sm-4 col-lg-3 col-xl-2">
+                    <Button onClick={this.startRecording} variant="primary" 
+                    className="text-capitalize mx-1 col-6 col-sm-4 col-lg-3 col-xl-2">
                         Start record
                     </Button>
-                    <Button onClick={this.stopRecording} variant="danger" className="text-capitalize mx-1 col-xs-6 col-sm-4 col-lg-3 col-xl-2">
+                    <Button onClick={this.stopRecording} variant="danger" 
+                    className="text-capitalize mx-1 col-6 col-sm-4 col-lg-3 col-xl-2">
                         Stop record
                     </Button>
                 </div>
-            </div>
+            </>
         )
     }
 }
