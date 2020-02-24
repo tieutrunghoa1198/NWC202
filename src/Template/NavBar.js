@@ -8,7 +8,7 @@ export default class NavBar extends Component {
     render() {
         return (
             <Navbar bg="light" expand="sm">
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                <Navbar.Brand href="#home">FPT - STT</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
