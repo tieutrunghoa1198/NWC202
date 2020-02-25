@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import {ReactMic} from 'react-mic'
 import {Button} from 'react-bootstrap'
-import axios from 'axios'
+import axios from '../axios'
 export default class Record extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            responseText: '',
+            transcript: '',
             record: false
         }
         this.onStop = this.onStop.bind(this)
@@ -15,7 +15,7 @@ export default class Record extends Component {
 
     setText = (responseText) => {
         this.setState({
-            responseText: responseText
+            transcript: responseText
         })
     }
 
@@ -39,16 +39,9 @@ export default class Record extends Component {
 
     sendRequest = (blob) => {
         let responseText
-        let url = 'https://api.fpt.ai/hmi/asr/general'
-        let headers = {
-            'api-key': 'VR5x7QPp5R6iQxniZ9S6o2JIXfftBRaf'
-        }
-        axios({
-            url: url,
-            method: "POST",
-            data: blob,
-            headers
-        }).then(response => {
+        axios
+        .post('', blob)
+        .then(response => {
             console.log(response.data.hypotheses[0].utterance);
             responseText = response.data.hypotheses[0].utterance
             this.setText(responseText)
@@ -84,7 +77,7 @@ export default class Record extends Component {
                 </div>
                 <div className="d-flex justify-content-center my-3">
                     <p  className="display-4">
-                        {this.state.responseText}
+                        {this.state.transcript}
                     </p>
                 </div>
             </>
