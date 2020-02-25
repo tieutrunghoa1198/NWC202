@@ -7,7 +7,7 @@ export default class Record extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            responseText: '',
+            responseText: 'Defaul Text',
             record: false
         }
         this.onStop = this.onStop.bind(this)
@@ -36,7 +36,7 @@ export default class Record extends Component {
     //     blob.name = fileName
     //     return blob
     // }
-    
+
     sendRequest = (blob) => {
         let responseText
         let url = 'https://api.fpt.ai/hmi/asr/general'
@@ -49,12 +49,12 @@ export default class Record extends Component {
             data: blob,
             headers
         }).then(response => {
-            console.log(response.data.hypotheses[0].utterance);
+            // console.log(response.data.hypotheses[0].utterance);
             responseText = response.data.hypotheses[0].utterance
+            this.setText(responseText)
         }).catch(err => {
             console.log(err);
         })
-        this.setText(responseText)
     }
 
     onStop(recordedBlob) {
@@ -67,7 +67,6 @@ export default class Record extends Component {
                 <ReactMic
                     record={this.state.record}
                     className="sound-wave w-100"
-                    // onData={this.onData}  
                     onStop={this.onStop}
                     mimeType="audio/mp3"
                     strokeColor="#000000"
@@ -82,6 +81,11 @@ export default class Record extends Component {
                     className="text-capitalize my-1 mx-1 col-6 col-sm-3 col-xl-2">
                         Stop record
                     </Button>
+                </div>
+                <div className="d-flex justify-content-center my-3">
+                    <p  className="display-4">
+                        {this.state.responseText}
+                    </p>
                 </div>
             </>
         )
