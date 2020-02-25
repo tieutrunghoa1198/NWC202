@@ -70,7 +70,7 @@ export default class Record extends Component {
                     onStop={this.onStop}
                     mimeType="audio/mp3"
                     strokeColor="#000000"
-                    backgroundColor="#FF4081"
+                    backgroundColor="#ffffff"
                 />
                 <div className="row justify-content-center mt-2">
                     <Button onClick={this.startRecording} variant="primary" 
