@@ -42,7 +42,6 @@ export default class Record extends Component {
         axios
         .post('', blob)
         .then(response => {
-            console.log(response.data.hypotheses[0].utterance);
             responseText = response.data.hypotheses[0].utterance
             this.setText(responseText)
         }).catch(err => {
