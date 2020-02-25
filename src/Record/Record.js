@@ -7,7 +7,7 @@ export default class Record extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            responseText: 'Defaul Text',
+            responseText: '',
             record: false
         }
         this.onStop = this.onStop.bind(this)
@@ -49,7 +49,7 @@ export default class Record extends Component {
             data: blob,
             headers
         }).then(response => {
-            // console.log(response.data.hypotheses[0].utterance);
+            console.log(response.data.hypotheses[0].utterance);
             responseText = response.data.hypotheses[0].utterance
             this.setText(responseText)
         }).catch(err => {
@@ -70,7 +70,7 @@ export default class Record extends Component {
                     onStop={this.onStop}
                     mimeType="audio/mp3"
                     strokeColor="#000000"
-                    backgroundColor="#FF4081"
+                    backgroundColor="#ffffff"
                 />
                 <div className="row justify-content-center mt-2">
                     <Button onClick={this.startRecording} variant="primary" 
