@@ -32,7 +32,7 @@ export default class Record extends Component {
     }
 
     stopRecording = () => {
-        this.isLoading(true)
+        if (this.state.record !== false) this.isLoading(true)
         this.setState({
             record: false
         })
@@ -69,7 +69,10 @@ export default class Record extends Component {
             .then(response => {
                 responseText = response.data.hypotheses[0].utterance
                 this.isLoading(false)
-                this.setText(responseText)
+                if(responseText === '') 
+                    this.setText('Có vẻ như bạn chưa nói gì cả. Hãy thử lại nhé!')
+                else 
+                    this.setText(responseText)
             }).catch(err => {
                 console.log(err);
             })
@@ -106,7 +109,6 @@ export default class Record extends Component {
                         Connect server
                     </Button>
                 </div>
-
                 <div className="d-flex justify-content-center my-3">
                     <p className="display-4">
                         {loading ? <ClipLoader /> : transcript}
