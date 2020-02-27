@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import { ReactMic } from 'react-mic'
 import { Button } from 'react-bootstrap'
+import { ClipLoader } from "react-spinners"
 import axios from '../Axios and config/axios'
 import axiosLocal from '../Axios and config/axiosLocal'
+
+// import data from './'
 export default class Record extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
+            loading: false,
             transcript: '',
             record: false
         }
@@ -28,6 +32,7 @@ export default class Record extends Component {
     }
 
     stopRecording = () => {
+        this.isLoading(true)
         this.setState({
             record: false
         })
@@ -41,28 +46,33 @@ export default class Record extends Component {
         })
     }
 
+    isLoading = (boolean) => {
+        this.setState({
+            loading: boolean
+        })
+    }
+
     connectServer = () => {
+        this.isLoading(true)
         axiosLocal
             .get('/')
             .then(res => {
-                console.log(res)
+                this.isLoading(false)
                 this.setText(res.data)
-            })
-            .catch(err => {
-                console.log(err)
             })
     }
 
     sendRequest = (blob) => {
         let responseText
         axios
-        .post('', blob)
-        .then(response => {
-            responseText = response.data.hypotheses[0].utterance
-            this.setText(responseText)
-        }).catch(err => {
-            console.log(err);
-        })
+            .post('', blob)
+            .then(response => {
+                responseText = response.data.hypotheses[0].utterance
+                this.isLoading(false)
+                this.setText(responseText)
+            }).catch(err => {
+                console.log(err);
+            })
     }
 
     /* 
@@ -71,6 +81,7 @@ export default class Record extends Component {
 
     */
     render() {
+        const { loading, transcript } = this.state
         return (
             <>
                 <ReactMic
@@ -95,9 +106,10 @@ export default class Record extends Component {
                         Connect server
                     </Button>
                 </div>
+
                 <div className="d-flex justify-content-center my-3">
                     <p className="display-4">
-                        {this.state.transcript}
+                        {loading ? <ClipLoader /> : transcript}
                     </p>
                 </div>
             </>
