@@ -56,16 +56,15 @@ export default class Record extends Component {
     sendRequest = (blob) => {
         let responseText
         axios
-            .post('', blob)
-            .then(response => {
-                console.log(response.data.hypotheses[0].utterance);
-                responseText = response.data.hypotheses[0].utterance
-                this.setText(responseText)
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        .post('', blob)
+        .then(response => {
+            responseText = response.data.hypotheses[0].utterance
+            this.setText(responseText)
+        }).catch(err => {
+            console.log(err);
+        })
     }
+
     /* 
     
     componentWillMount and componentDidMount
