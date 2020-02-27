@@ -101,7 +101,7 @@ export default class Record extends Component {
                         className="text-capitalize my-1 mx-1 col-6 col-sm-3 col-xl-2">
                         Stop record
                     </Button>
-                    <Button onClick={this.connectServer} variant="danger"
+                    <Button onClick={this.connectServer} variant="success"
                         className="text-capitalize my-1 mx-1 col-6 col-sm-3 col-xl-2">
                         Connect server
                     </Button>
