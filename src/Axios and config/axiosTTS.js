@@ -2,6 +2,6 @@ import axios from 'axios';
 import config from './config';
 
 export default axios.create({
-    baseURL: config.STT.rootPath,
-    headers: config.STT.headers
+    baseURL: config.TTS.rootPath,
+    headers: config.TTS.headers
   })

@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap'
 import { ClipLoader } from "react-spinners"
 import axios from '../Axios and config/axios'
 import axiosLocal from '../Axios and config/axiosLocal'
+import axiosTTS from '../Axios and config/axiosTTS'
 
 // import data from './'
 export default class Record extends Component {
@@ -15,16 +16,11 @@ export default class Record extends Component {
             transcript: '',
             record: false
         }
-        this.onStop = this.onStop.bind(this)
-        // this.setText = this.setText.bind(this)
+        this.textReceived = this.textReceived.bind(this)
     }
     /*
         function for react-mic 
     */
-    onStop(recordedBlob) {
-        this.sendRequest(recordedBlob.blob)
-    }
-
     startRecording = () => {
         this.setState({
             record: true
@@ -36,6 +32,11 @@ export default class Record extends Component {
         this.setState({
             record: false
         })
+    }
+
+    textReceived(recordedBlob) {
+        //send user's voice to fpt to get response text
+        this.requestToFPT(recordedBlob.blob)
     }
     /*
         function for data
@@ -52,29 +53,54 @@ export default class Record extends Component {
         })
     }
 
-    connectServer = () => {
+    requestTo_VoiceBot = (transcript) => {
+        let tts
         this.isLoading(true)
         axiosLocal
-            .get('/')
+            .post('/api/chatbot/', {
+                question: transcript
+            })
             .then(res => {
+                tts = res.data
+                console.log(res.data)
                 this.isLoading(false)
                 this.setText(res.data)
+                this.textToSpeech(tts)
             })
+            .catch(err => {
+                console.log('Request to voice bot error: ', err)
+            })
+
     }
 
-    sendRequest = (blob) => {
+    requestToFPT = (blob) => {
         let responseText
+        //use axios to send binary large object
         axios
             .post('', blob)
             .then(response => {
+                //set this.state.transcript as response text
                 responseText = response.data.hypotheses[0].utterance
                 this.isLoading(false)
-                if(responseText === '') 
+                if (responseText === '')
                     this.setText('Có vẻ như bạn chưa nói gì cả. Hãy thử lại nhé!')
-                else 
+                else {
                     this.setText(responseText)
+                    this.requestTo_VoiceBot(responseText)
+                }
             }).catch(err => {
-                console.log(err);
+                console.log('Request to FPT error: ', err);
+            })
+
+    }
+
+    textToSpeech = (tts) => {
+        axiosTTS
+            .post('', tts)
+            .then(response => {
+                console.log(response.data.async)
+            }).catch(err => {
+                console.log('Text to speech error: ', err);
             })
     }
 
@@ -90,7 +116,7 @@ export default class Record extends Component {
                 <ReactMic
                     record={this.state.record}
                     className="sound-wave w-100"
-                    onStop={this.onStop}
+                    onStop={this.textReceived}
                     mimeType="audio/mp3"
                     strokeColor="#000000"
                     backgroundColor="#ffffff"
@@ -104,13 +130,9 @@ export default class Record extends Component {
                         className="text-capitalize my-1 mx-1 col-6 col-sm-3 col-xl-2">
                         Stop record
                     </Button>
-                    <Button onClick={this.connectServer} variant="success"
-                        className="text-capitalize my-1 mx-1 col-6 col-sm-3 col-xl-2">
-                        Connect server
-                    </Button>
                 </div>
                 <div className="d-flex justify-content-center my-3">
-                    <p className="display-4">
+                    <p className="display-4 text-center">
                         {loading ? <ClipLoader /> : transcript}
                     </p>
                 </div>
