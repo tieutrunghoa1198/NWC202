@@ -12,10 +12,12 @@ export default class Record extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            url: '',
             loading: false,
             transcript: '',
             record: false
         }
+        this.player = new Audio()
         this.textReceived = this.textReceived.bind(this)
     }
     /*
@@ -95,10 +97,17 @@ export default class Record extends Component {
     }
 
     textToSpeech = (tts) => {
+        let urlResponse
         axiosTTS
             .post('', tts)
             .then(response => {
+                urlResponse = response.data.async
+                this.setState({
+                    url: urlResponse
+                })
                 console.log(response.data.async)
+                this.player.src = urlResponse
+                this.player.play()
             }).catch(err => {
                 console.log('Text to speech error: ', err);
             })
