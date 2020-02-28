@@ -107,7 +107,11 @@ export default class Record extends Component {
                 })
                 console.log(response.data.async)
                 this.player.src = urlResponse
-                this.player.play()
+                this.player.play().then(() => {
+                    console.log('success')
+                }).catch(err => {
+                    console.log('Cannot play: ', err)
+                })
             }).catch(err => {
                 console.log('Text to speech error: ', err);
             })

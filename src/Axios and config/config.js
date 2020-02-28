@@ -2,13 +2,13 @@ export default {
     STT: {
         rootPath: 'https://api.fpt.ai/hmi/asr/general',
         headers: {
-            'api-key': 'ZDm0cLDhn1y8QXCsMnHoLEw290AT0H3s'
+            'api-key': '4J5KJAD4lliWF5c3KZhkPRSCC6hF7trI'
         }
     },
     TTS: {
         rootPath: 'https://api.fpt.ai/hmi/tts/v5',
         headers: {
-            'api-key': 'ZDm0cLDhn1y8QXCsMnHoLEw290AT0H3s',
+            'api-key': '4J5KJAD4lliWF5c3KZhkPRSCC6hF7trI',
             'voice': 'banmai',
             'Content-Type': 'application/x-www-form-urlencoded'
         }
