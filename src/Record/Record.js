@@ -21,6 +21,7 @@ export default class Record extends Component {
         function for react-mic 
     */
     startRecording = () => {
+        this.audio.pause()
         this.setState({
             record: true
         })
