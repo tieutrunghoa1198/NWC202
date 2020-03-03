@@ -5,20 +5,17 @@ import { ClipLoader } from "react-spinners"
 import axios from '../Axios and config/axios'
 import axiosLocal from '../Axios and config/axiosLocal'
 import axiosTTS from '../Axios and config/axiosTTS'
-
-// import data from './'
 export default class Record extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            url: '',
             loading: false,
             transcript: '',
-            record: false
+            record: false,
         }
-        this.player = new Audio()
-        this.textReceived = this.textReceived.bind(this)
+        this.audio = new Audio()
+        this.speechReceived = this.speechReceived.bind(this)
     }
     /*
         function for react-mic 
@@ -36,9 +33,9 @@ export default class Record extends Component {
         })
     }
 
-    textReceived(recordedBlob) {
+    speechReceived(recordedBlob) {
         //send user's voice to fpt to get response text
-        this.requestToFPT(recordedBlob.blob)
+        this.speechToText(recordedBlob.blob)
     }
     /*
         function for data
@@ -65,31 +62,31 @@ export default class Record extends Component {
             .then(res => {
                 tts = res.data
                 console.log(res.data)
-                this.isLoading(false)
                 this.setText(res.data)
                 this.textToSpeech(tts)
             })
             .catch(err => {
+                let errMsg = 'Chà, có vẻ như câu hỏi của bạn nằm ngoài kiến thức của tui rùi, liên lạc với tiêu hòa để giải quyết nhé'
+                this.textToSpeech(errMsg)
                 console.log('Request to voice bot error: ', err)
             })
-
     }
 
-    requestToFPT = (blob) => {
+    speechToText = (blob) => {
         let responseText
-        //use axios to send binary large object
         axios
             .post('', blob)
             .then(response => {
-                //set this.state.transcript as response text
                 responseText = response.data.hypotheses[0].utterance
-                this.isLoading(false)
-                if (responseText === '')
-                    this.setText('Có vẻ như bạn chưa nói gì cả. Hãy thử lại nhé!')
-                else {
-                    this.setText(responseText)
-                    this.requestTo_VoiceBot(responseText)
-                }
+                this.setText(responseText)
+                this.requestTo_VoiceBot(responseText)
+                // if (responseText === '') {
+                //     this.setText(sayNothingMsg)
+                //     this.textToSpeech(sayNothingMsg)
+                // }
+                // else {
+
+                // }
             }).catch(err => {
                 console.log('Request to FPT error: ', err);
             })
@@ -102,21 +99,27 @@ export default class Record extends Component {
             .post('', tts)
             .then(response => {
                 urlResponse = response.data.async
-                this.setState({
-                    url: urlResponse
-                })
-                console.log(response.data.async)
-                this.player.src = urlResponse
-                this.player.play().then(() => {
-                    console.log('success')
-                }).catch(err => {
-                    console.log('Cannot play: ', err)
-                })
+                console.log(urlResponse)
+                this.waitLinkAvailable(urlResponse, 5000)
             }).catch(err => {
                 console.log('Text to speech error: ', err);
             })
     }
 
+    waitLinkAvailable = (url, timeout) => {
+        let { audio } = this
+        console.log('start')
+        setTimeout(() => {
+            audio.src = url
+            audio.play().then(() => {
+                this.isLoading(false)
+                console.log('Ready status: ', audio.readyState)
+            }).catch(err => {
+                console.log('Ready status: ', audio.readyState)
+                console.log('Lỗi: ', err)
+            })
+        }, timeout);
+    }
     /* 
     
     componentWillMount and componentDidMount
@@ -129,7 +132,7 @@ export default class Record extends Component {
                 <ReactMic
                     record={this.state.record}
                     className="sound-wave w-100"
-                    onStop={this.textReceived}
+                    onStop={this.speechReceived}
                     mimeType="audio/mp3"
                     strokeColor="#000000"
                     backgroundColor="#ffffff"
