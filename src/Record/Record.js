@@ -81,17 +81,9 @@ export default class Record extends Component {
                 responseText = response.data.hypotheses[0].utterance
                 this.setText(responseText)
                 this.requestTo_VoiceBot(responseText)
-                // if (responseText === '') {
-                //     this.setText(sayNothingMsg)
-                //     this.textToSpeech(sayNothingMsg)
-                // }
-                // else {
-
-                // }
             }).catch(err => {
                 console.log('Request to FPT error: ', err);
             })
-
     }
 
     textToSpeech = (tts) => {
@@ -108,6 +100,9 @@ export default class Record extends Component {
     }
 
     waitLinkAvailable = (url, timeout) => {
+        /*
+            Lỗi:  DOMException: The play() request was interrupted by a call to pause()
+        */
         let { audio } = this
         console.log('start')
         setTimeout(() => {
