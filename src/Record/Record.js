@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { ReactMic } from 'react-mic'
-import { Button } from 'react-bootstrap'
 import { ClipLoader } from "react-spinners"
 import axios from '../Axios and config/axios'
 import axiosLocal from '../Axios and config/axiosLocal'
 import axiosTTS from '../Axios and config/axiosTTS'
+import StartButton from './StartButton'
+import StopButton from './StopButton'
+import Carousel from '../Template/Carousel'
 export default class Record extends Component {
 
     constructor(props) {
@@ -125,23 +127,20 @@ export default class Record extends Component {
         const { loading, transcript } = this.state
         return (
             <>
-                <ReactMic
-                    record={this.state.record}
-                    className="sound-wave w-100"
-                    onStop={this.speechReceived}
-                    mimeType="audio/mp3"
-                    strokeColor="#000000"
-                    backgroundColor="#ffffff"
-                />
+                <Carousel/>
+                <div className="d-flex justify-content-center">
+                    <ReactMic
+                        record={this.state.record}
+                        className="sound-wave aw-soundWave"
+                        onStop={this.speechReceived}
+                        mimeType="audio/mp3"
+                        strokeColor="#000000"
+                        backgroundColor="#ffffff"
+                    />
+                </div>
                 <div className="row justify-content-center mt-2">
-                    <Button onClick={this.startRecording} variant="primary"
-                        className="text-capitalize my-1 mx-1 col-6 col-sm-3 col-xl-2">
-                        Start record
-                    </Button>
-                    <Button onClick={this.stopRecording} variant="danger"
-                        className="text-capitalize my-1 mx-1 col-6 col-sm-3 col-xl-2">
-                        Stop record
-                    </Button>
+                    <StartButton startRecording={this.startRecording} />
+                    <StopButton stopRecording={this.stopRecording} />
                 </div>
                 <div className="d-flex justify-content-center my-3">
                     <p className="display-4 text-center">
@@ -152,3 +151,4 @@ export default class Record extends Component {
         )
     }
 }
+
