@@ -95,7 +95,7 @@ export default class Record extends Component {
             .then(response => {
                 urlResponse = response.data.async
                 console.log(urlResponse)
-                this.waitLinkAvailable(urlResponse, 5000)
+                this.waitLinkAvailable(urlResponse, 3000)
             }).catch(err => {
                 console.log('Text to speech error: ', err);
             })
