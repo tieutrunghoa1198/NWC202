@@ -1,11 +1,9 @@
 import React from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import NavBar from './Template/NavBar'
 import Record from './Record/Record'
 import About from './Components/About'
 import Footer from './Template/Footer'
-// import Carousel from './Template/Carousel'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 function App() {
   return (
