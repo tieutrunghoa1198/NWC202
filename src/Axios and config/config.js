@@ -4,7 +4,7 @@ export default {
     STT: {
         rootPath: 'https://api.fpt.ai/hmi/asr/general',
         headers: {
-            'api-key': process.env.API_KEY
+            'api-key': KEY
         }
     },
     TTS: {
