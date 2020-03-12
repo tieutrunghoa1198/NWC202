@@ -7,14 +7,12 @@ import Footer from './Template/Footer'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 function App() {
   return (
-      <Router>
-        <div className="container-fluid">
-          <NavBar />
-          <Route exact path="/" component={Record} />
-          <Route path="/about" component={About} />
-          <Footer/>
-        </div>
-      </Router>
+    <Router>
+      <NavBar />
+      <Route exact path="/" component={Record} />
+      <Route path="/about" component={About} />
+      <Footer />
+    </Router>
   );
 }
 

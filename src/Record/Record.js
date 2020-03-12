@@ -127,25 +127,27 @@ export default class Record extends Component {
         const { loading, transcript } = this.state
         return (
             <>
-                <Carousel/>
-                <div className="d-flex justify-content-center">
-                    <ReactMic
-                        record={this.state.record}
-                        className="sound-wave aw-soundWave"
-                        onStop={this.speechReceived}
-                        mimeType="audio/mp3"
-                        strokeColor="#000000"
-                        backgroundColor="#ffffff"
-                    />
-                </div>
-                <div className="row justify-content-center mt-2">
-                    <StartButton startRecording={this.startRecording} />
-                    <StopButton stopRecording={this.stopRecording} />
-                </div>
-                <div className="d-flex justify-content-center my-3">
-                    <p className="display-4 text-center">
-                        {loading ? <ClipLoader /> : transcript}
-                    </p>
+                <Carousel />
+                <div className="container-fluid">
+                    <div className="d-flex justify-content-center">
+                        <ReactMic
+                            record={this.state.record}
+                            className="sound-wave aw-soundWave"
+                            onStop={this.speechReceived}
+                            mimeType="audio/mp3"
+                            strokeColor="#000000"
+                            backgroundColor="#ffffff"
+                        />
+                    </div>
+                    <div className="row justify-content-center mt-2">
+                        <StartButton startRecording={this.startRecording} />
+                        <StopButton stopRecording={this.stopRecording} />
+                    </div>
+                    <div className="d-flex justify-content-center my-3">
+                        <p className="display-4 text-center">
+                            {loading ? <ClipLoader /> : transcript}
+                        </p>
+                    </div>
                 </div>
             </>
         )
