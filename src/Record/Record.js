@@ -85,6 +85,7 @@ export default class Record extends Component {
                 this.requestTo_VoiceBot(responseText)
             }).catch(err => {
                 console.log('Request to FPT error: ', err);
+                console.log(process.env)
             })
     }
 

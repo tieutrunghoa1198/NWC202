@@ -1,9 +1,10 @@
-const KEY = process.env.REACT_APP_STATE === 'localhost' ? 'petQoJTJmXHa6v5sY9IwdJmOzAvyaYqy' : process.env.APIKEY
+// require('dotenv').config()
+const KEY = "petQoJTJmXHa6v5sY9IwdJmOzAvyaYqy"
 export default {
     STT: {
         rootPath: 'https://api.fpt.ai/hmi/asr/general',
         headers: {
-            'api-key': KEY
+            'api-key': process.env.API_KEY
         }
     },
     TTS: {
