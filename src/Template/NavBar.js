@@ -23,12 +23,23 @@ export default class NavBar extends Component {
                             <li className="nav-item">
                                 <a className="nav-link" href="/about">About</a>
                             </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="/" 
+                                id="navbarDropdown" role="button" data-toggle="dropdown" 
+                                aria-haspopup="true" aria-expanded="false">
+                                    Language
+                                </a>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a className="dropdown-item" href="/">Vietnamese</a>
+                                    <a className="dropdown-item" href="/">English</a>
+                                </div>
+                            </li>
                         </ul>
-                        <div class="dropdown-divider"></div>
-                        <form class="form-inline my-2 my-lg-0">
-                            <button class="btn btn-outline-success mr-2 my-2 my-sm-0" type="submit">Login</button>
+                        <div className="dropdown-divider"></div>
+                        <form className="form-inline my-2 my-lg-0">
+                            <button className="btn btn-outline-success mr-2 my-2 my-sm-0" type="submit">Login</button>
                             {/* <span>/</span> */}
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign up</button>
+                            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Sign up</button>
                         </form>
                         {/* <form className="form-inline my-2 my-lg-0">
                         <input className="form-control mr-sm-2" type="search" 
