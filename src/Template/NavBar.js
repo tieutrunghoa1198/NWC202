@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class NavBar extends Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid px-lg-4">
                     <a className="navbar-brand d-none d-lg-block" href="/">
                         <img src="https://st.chungta.vn/v306/chungta/images/graphics/logofpt.fw.png" alt="logo" />
@@ -14,7 +14,9 @@ export default class NavBar extends Component {
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-
+                    <a className="navbar-brand d-lg-none" href="/">
+                        <img src="https://st.chungta.vn/v306/chungta/images/graphics/logofpt.fw.png" alt="logo" />
+                    </a>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item active">
@@ -24,9 +26,9 @@ export default class NavBar extends Component {
                                 <a className="nav-link" href="/about">About</a>
                             </li>
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="/" 
-                                id="navbarDropdown" role="button" data-toggle="dropdown" 
-                                aria-haspopup="true" aria-expanded="false">
+                                <a className="nav-link dropdown-toggle" href="/"
+                                    id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
                                     Language
                                 </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
