@@ -34,8 +34,8 @@ export default class Footer extends Component {
                             </a>
                         </li>
                         <li class="list-inline-item mx-2">
-                            <a href="https://www.twitter.com" class="text-danger">
-                                <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                            <a href="https://www.linkedin.com/" class="text-danger">
+                                <i class="fa fa-linkedin fa-2x" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li class="list-inline-item mx-2">
