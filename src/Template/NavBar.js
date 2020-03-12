@@ -24,6 +24,12 @@ export default class NavBar extends Component {
                                 <a className="nav-link" href="/about">About</a>
                             </li>
                         </ul>
+                        <div class="dropdown-divider"></div>
+                        <form class="form-inline my-2 my-lg-0">
+                            <button class="btn btn-outline-success mr-2 my-2 my-sm-0" type="submit">Login</button>
+                            {/* <span>/</span> */}
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign up</button>
+                        </form>
                         {/* <form className="form-inline my-2 my-lg-0">
                         <input className="form-control mr-sm-2" type="search" 
                         placeholder="Search" aria-label="Search" />
