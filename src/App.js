@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import NavBar from './Template/NavBar'
-import Record from './Record/Record'
-import About from './Components/About'
-import Footer from './Template/Footer'
+import NavBar from './Components/Template/NavBar'
+import Record from './Components/Record/Record'
+import About from './Components/About/About'
+import Footer from './Components/Template/Footer'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 function App() {
   return (

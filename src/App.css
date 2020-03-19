@@ -54,6 +54,45 @@
     background-color: #00f7ff;
 }
 
+.btn-th { 
+    padding: 1rem;
+    font-size: 80%;
+    /* font-weight: bold; */
+    letter-spacing: .1rem;
+    border-radius: 5rem;
+}
+
+.aw-soundWave {
+    border-bottom-left-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+    border-top-left-radius: 3.75rem;
+    border-top-right-radius: 3.75rem;
+}
+
+.boxed-btn3 {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#0181f5+0,5db2ff+100 */
+    background: #615CFD;
+    color: #fff;
+    display: inline-block;
+    padding: 12px 33px;
+    font-family: "Muli", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    border: 0;
+    border: 1px solid transparent;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    /* border-radius: 30px; */
+    text-align: center;
+    color: #fff !important;
+    text-transform: capitalize;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+
 /* extra small */
 
 @media (min-width: 365px) {

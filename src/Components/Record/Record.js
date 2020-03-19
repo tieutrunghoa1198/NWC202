@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { ReactMic } from 'react-mic'
 import { ClipLoader } from "react-spinners"
-import axios from '../Axios and config/axios'
-import axiosLocal from '../Axios and config/axiosLocal'
-import axiosTTS from '../Axios and config/axiosTTS'
+import axios from '../../Axios and config/axios'
+import axiosSTT from '../../Axios and config/axiosSTT'
+import axiosTTS from '../../Axios and config/axiosTTS'
 import StartButton from './StartButton'
 import StopButton from './StopButton'
 import Carousel from '../Template/Carousel'
@@ -58,7 +58,7 @@ export default class Record extends Component {
     requestTo_VoiceBot = (transcript) => {
         let tts
         this.isLoading(true)
-        axiosLocal
+        axios
             .post('/api/chatbot/', {
                 question: transcript
             })
@@ -77,7 +77,7 @@ export default class Record extends Component {
 
     speechToText = (blob) => {
         let responseText
-        axios
+        axiosSTT
             .post('', blob)
             .then(response => {
                 responseText = response.data.hypotheses[0].utterance
@@ -133,11 +133,11 @@ export default class Record extends Component {
                     <div className="d-flex justify-content-center">
                         <ReactMic
                             record={this.state.record}
-                            className="sound-wave aw-soundWave"
+                            className="sound-wave aw-soundWave pt-3"
                             onStop={this.speechReceived}
                             mimeType="audio/mp3"
-                            strokeColor="#000000"
-                            backgroundColor="#ffffff"
+                            strokeColor="#FF0000"
+                            backgroundColor="#000000"
                         />
                     </div>
                     <div className="row justify-content-center mt-2">
