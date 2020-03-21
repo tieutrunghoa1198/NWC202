@@ -93,6 +93,11 @@
     cursor: pointer;
   }
 
+.bg-corlor {    
+    height: 1000px;
+}
+  
+
 /* extra small */
 
 @media (min-width: 365px) {

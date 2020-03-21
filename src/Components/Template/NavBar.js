@@ -38,7 +38,7 @@ export default class NavBar extends Component {
                             </li>
                         </ul>
                         <div className="dropdown-divider"></div>
-                        <form action="http://voicebot-fpt.herokuapp.com/login" className="form-inline my-2 my-lg-0" method="GET">
+                        <form action="/login" className="form-inline my-2 my-lg-0">
                             <button className="btn btn-outline-success mr-2 my-2 my-sm-0" type="submit">Login</button>
                             {/* <span>/</span> */}
                             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Sign up</button>
