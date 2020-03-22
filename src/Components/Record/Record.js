@@ -12,7 +12,7 @@ export default class Record extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            loading: false,
+            isLoading: false,
             transcript: '',
             isRecord: false,
         }
@@ -27,6 +27,7 @@ export default class Record extends Component {
         this.setState({
             isRecord: true
         })
+        console.log('click', this.state.isRecord)
     }
 
     stopRecording = () => {
@@ -34,6 +35,7 @@ export default class Record extends Component {
         this.setState({
             isRecord: false
         })
+        console.log('click', this.state.isRecord)
     }
 
     speechReceived(recordedBlob) {
@@ -51,7 +53,7 @@ export default class Record extends Component {
 
     isLoading = (boolean) => {
         this.setState({
-            loading: boolean
+            isLoading: boolean
         })
     }
 
@@ -125,14 +127,14 @@ export default class Record extends Component {
 
     */
     render() {
-        const { loading, transcript, isRecord } = this.state
+        const { isLoading, transcript, isRecord } = this.state
         return (
             <>
                 <Carousel />
                 <div className="container-fluid">
                     <div className="d-flex justify-content-center">
                         <ReactMic
-                            isRecord={isRecord}
+                            record={isRecord}
                             className="sound-wave aw-soundWave pt-3"
                             onStop={this.speechReceived}
                             mimeType="audio/mp3"
@@ -146,7 +148,7 @@ export default class Record extends Component {
                     </div>
                     <div className="d-flex justify-content-center my-3">
                         <p className="display-4 text-center">
-                            {loading ? <ClipLoader /> : transcript}
+                            {isLoading ? <ClipLoader /> : transcript}
                         </p>
                     </div>
                 </div>
