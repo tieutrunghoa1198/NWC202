@@ -36,7 +36,7 @@ export default class Login extends Component {
                                         <hr className="my-4" />
                                         <button className="btn btn-lg btn-google btn-block text-uppercase"><i
                                             className="fab fa-google mr-2"></i> Sign in with Google</button>
-                                        <button className="btn btn-lg btn-facebook btn-block text-uppercase"><i
+                                        <button className="btn btn-lg btn-primary btn-block text-uppercase"><i
                                             className="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
                                     </form>
                                 </div>

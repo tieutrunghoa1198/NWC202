@@ -14,7 +14,7 @@ export default class Record extends Component {
         this.state = {
             loading: false,
             transcript: '',
-            record: false,
+            isRecord: false,
         }
         this.audio = new Audio()
         this.speechReceived = this.speechReceived.bind(this)
@@ -25,14 +25,14 @@ export default class Record extends Component {
     startRecording = () => {
         this.audio.pause()
         this.setState({
-            record: true
+            isRecord: true
         })
     }
 
     stopRecording = () => {
-        if (this.state.record !== false) this.isLoading(true)
+        if (this.state.isRecord !== false) this.isLoading(true)
         this.setState({
-            record: false
+            isRecord: false
         })
     }
 
@@ -125,14 +125,14 @@ export default class Record extends Component {
 
     */
     render() {
-        const { loading, transcript } = this.state
+        const { loading, transcript, isRecord } = this.state
         return (
             <>
                 <Carousel />
                 <div className="container-fluid">
                     <div className="d-flex justify-content-center">
                         <ReactMic
-                            record={this.state.record}
+                            isRecord={isRecord}
                             className="sound-wave aw-soundWave pt-3"
                             onStop={this.speechReceived}
                             mimeType="audio/mp3"
