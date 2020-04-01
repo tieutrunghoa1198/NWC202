@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 export default class NavBar extends Component {
     render() {
         return (
+            //demo github
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid px-lg-4">
                     <a className="navbar-brand d-none d-lg-block" href="/">
